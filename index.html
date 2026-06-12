@@ -21,7 +21,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   
   <!-- Custom Stylesheets -->
-  <link rel="stylesheet" href="styles.css?v=1.2">
+  <link rel="stylesheet" href="styles.css?v=1.6">
 
   <!-- Inline style block to guarantee immediate rendering of the floating Quote button (bypasses browser caching) -->
   <style>
@@ -237,9 +237,9 @@
           </svg>
           WhatsApp Chat
         </a>
-        <a href="#quote-form" class="btn btn-primary" id="header-cta-btn">
-          Get a Free Quote | 获取免费报价
-        </a>
+        <button class="btn btn-primary" id="header-site-visit-btn">
+          Book a Site Visit | 预约现场测量
+        </button>
       </div>
       
       <!-- Hamburger Menu for Mobile -->
@@ -282,9 +282,9 @@
       </svg>
       WhatsApp Chat
     </a>
-    <a href="#quote-form" class="btn btn-primary mobile-link" style="margin-top: 1rem;">
-      Free Quote | 获取报价
-    </a>
+    <button class="btn btn-primary mobile-link" id="mobile-site-visit-btn" style="margin-top: 1rem; width: 100%;">
+      Book a Site Visit | 预约现场测量
+    </button>
   </div>
 
   <main>
@@ -304,9 +304,9 @@
           <p class="zh">提供住宅和商业空间的全面室内设计与装修服务。从毛坯房到完全定制的环境。</p>
         </div>
         <div class="hero-ctas">
-          <a href="#quote-form" class="btn btn-primary">
-            Start Your Project Today | 立即启动您的项目
-          </a>
+          <button class="btn btn-primary" id="hero-site-visit-btn">
+            Book a Site Visit | 预约现场测量
+          </button>
           <a href="#about" class="btn btn-outline">
             Our Story | 我们的故事
           </a>
@@ -565,106 +565,165 @@
           <!-- Inquiry Form Container right -->
           <div class="inquiry-form-container" id="quote-form">
             <h3 class="bilingual-heading" style="margin-bottom: 2.5rem; text-align: center;">
-              <span class="en">Request A Free Quote</span>
-              <span class="zh">获取免费报价</span>
+              <span class="en">Book a Site Visit</span>
+              <span class="zh">预约现场测量</span>
             </h3>
             
             <form id="inquiry-form" class="lead-form" novalidate>
-              <!-- Name & Phone -->
-              <div class="form-row">
-                <div class="form-group">
-                  <label for="full-name" class="form-label">
-                    <span class="en">Full Name</span>
-                    <span class="zh">姓名</span>
-                    <span class="required-star">*</span>
-                  </label>
-                  <input type="text" id="full-name" name="name" class="form-control" placeholder="E.g. Tan Kok Seng" required>
-                </div>
-                
-                <div class="form-group">
-                  <label for="phone-number" class="form-label">
-                    <span class="en">Phone Number (WhatsApp)</span>
-                    <span class="zh">电话号码 (首选 WhatsApp)</span>
-                    <span class="required-star">*</span>
-                  </label>
-                  <input type="tel" id="phone-number" name="phone" class="form-control" placeholder="E.g. +60123456789" required>
-                </div>
-              </div>
-              
-              <!-- Email Address -->
+              <!-- Property Type Visual Select -->
               <div class="form-group">
-                <label for="email" class="form-label">
-                  <span class="en">Email Address</span>
-                  <span class="zh">电子邮箱</span>
-                  <span class="required-star">*</span>
-                </label>
-                <input type="email" id="email" name="email" class="form-control" placeholder="E.g. tan@example.com" required>
-              </div>
-              
-              <!-- Property Type -->
-              <div class="form-group">
-                <label for="property-type" class="form-label">
+                <label class="form-label">
                   <span class="en">Property Type</span>
                   <span class="zh">物业类型</span>
                   <span class="required-star">*</span>
                 </label>
-                <select id="property-type" name="property_type" class="form-control" required>
-                  <option value="" disabled selected>Select Property Type | 选择类型...</option>
-                  <option value="Residential">Residential | 住宅</option>
-                  <option value="Shoplot">Shoplot | 商业店铺</option>
-                  <option value="Office">Office | 办公室</option>
-                  <option value="Empty Ground">Empty Ground | 毛坯空地</option>
-                </select>
+                <div class="inline-cards-grid" data-grid-group="property-type">
+                  <div class="inline-card-option" data-value="Condo" data-group="inline-property-type">
+                    <div class="card-icon-small">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M8 10h.01"/><path d="M16 10h.01"/><path d="M8 14h.01"/><path d="M16 14h.01"/></svg>
+                    </div>
+                    <div class="card-title-small">
+                      <span class="en">Condo</span>
+                      <span class="zh">高层公寓</span>
+                    </div>
+                  </div>
+                  <div class="inline-card-option" data-value="Landed" data-group="inline-property-type">
+                    <div class="card-icon-small">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                    </div>
+                    <div class="card-title-small">
+                      <span class="en">Landed</span>
+                      <span class="zh">有地住宅</span>
+                    </div>
+                  </div>
+                  <div class="inline-card-option" data-value="Commercial" data-group="inline-property-type">
+                    <div class="card-icon-small">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/></svg>
+                    </div>
+                    <div class="card-title-small">
+                      <span class="en">Commercial</span>
+                      <span class="zh">商业空间</span>
+                    </div>
+                  </div>
+                </div>
               </div>
-              
-              <!-- Services Needed (Checkboxes) -->
+
+              <!-- Scope of Work Visual Select -->
               <div class="form-group">
                 <label class="form-label">
-                  <span class="en">Services Needed</span>
-                  <span class="zh">所需服务</span>
+                  <span class="en">Scope of Work</span>
+                  <span class="zh">工程范围</span>
                   <span class="required-star">*</span>
                 </label>
-                <div class="checkbox-grid">
-                  <label class="checkbox-label">
-                    <input type="checkbox" name="services" value="General Renovation">
-                    <span class="en">Renovation</span>
-                    <span class="zh">整体装修</span>
+                <div class="inline-cards-grid" data-grid-group="scope-work">
+                  <div class="inline-card-option" data-value="Kitchen" data-group="inline-scope-work">
+                    <div class="card-icon-small">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Z"/><path d="M18 22v-7"/></svg>
+                    </div>
+                    <div class="card-title-small">
+                      <span class="en">Kitchen</span>
+                      <span class="zh">厨房装修</span>
+                    </div>
+                  </div>
+                  <div class="inline-card-option" data-value="Full House" data-group="inline-scope-work">
+                    <div class="card-icon-small">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 1.912a2 2 0 0 1-2.828 0L3 11h18l-4.26-4.26a2 2 0 0 1 0-2.828L12 3Z"/><rect width="18" height="11" x="3" y="11" rx="2"/></svg>
+                    </div>
+                    <div class="card-title-small">
+                      <span class="en">Full House</span>
+                      <span class="zh">整屋翻新</span>
+                    </div>
+                  </div>
+                  <div class="inline-card-option" data-value="Extension" data-group="inline-scope-work">
+                    <div class="card-icon-small">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                    </div>
+                    <div class="card-title-small">
+                      <span class="en">Extension</span>
+                      <span class="zh">房屋扩建</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Budget Tier Visual Select -->
+              <div class="form-group">
+                <label class="form-label">
+                  <span class="en">Budget Tier</span>
+                  <span class="zh">预算区间</span>
+                  <span class="required-star">*</span>
+                </label>
+                <div class="inline-cards-grid budget-grid-small" data-grid-group="budget">
+                  <div class="inline-card-option" data-value="RM50k-100k" data-group="inline-budget">
+                    <div class="card-icon-small">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                    </div>
+                    <div class="card-title-small">
+                      <span class="en">RM50k - RM100k</span>
+                      <span class="zh">5万 - 10万令吉</span>
+                    </div>
+                  </div>
+                  <div class="inline-card-option" data-value="RM100k+" data-group="inline-budget">
+                    <div class="card-icon-small">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/><path d="M19 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V11a2 2 0 0 1 2-2h2"/></svg>
+                    </div>
+                    <div class="card-title-small">
+                      <span class="en">RM100k+</span>
+                      <span class="zh">10万令吉以上</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contact & Date Section -->
+              <div class="inline-contact-layout">
+                <div class="inline-contact-inputs">
+                  <div class="form-group">
+                    <label for="inline-name" class="form-label">
+                      <span class="en">Full Name</span>
+                      <span class="zh">姓名</span>
+                      <span class="required-star">*</span>
+                    </label>
+                    <input type="text" id="inline-name" class="form-control" placeholder="E.g. Tan Kok Seng" required>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label for="inline-phone" class="form-label">
+                      <span class="en">Phone Number (WhatsApp)</span>
+                      <span class="zh">电话号码 (首选 WhatsApp)</span>
+                      <span class="required-star">*</span>
+                    </label>
+                    <input type="tel" id="inline-phone" class="form-control" placeholder="E.g. +60123456789" required>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="inline-email" class="form-label">
+                      <span class="en">Email Address</span>
+                      <span class="zh">电子邮箱</span>
+                      <span class="required-star">*</span>
+                    </label>
+                    <input type="email" id="inline-email" class="form-control" placeholder="E.g. tan@example.com" required>
+                  </div>
+                </div>
+
+                <div class="inline-contact-calendar">
+                  <label class="form-label">
+                    <span class="en">Select Site Visit Date</span>
+                    <span class="zh">选择现场测量日期</span>
+                    <span class="required-star">*</span>
                   </label>
-                  <label class="checkbox-label">
-                    <input type="checkbox" name="services" value="Security Doors/Gates">
-                    <span class="en">Security Doors/Gates</span>
-                    <span class="zh">防盗门/自动门</span>
-                  </label>
-                  <label class="checkbox-label">
-                    <input type="checkbox" name="services" value="Acoustic Soundproofing">
-                    <span class="en">Acoustic Soundproofing</span>
-                    <span class="zh">声学隔音工程</span>
-                  </label>
-                  <label class="checkbox-label">
-                    <input type="checkbox" name="services" value="Custom Furniture">
-                    <span class="en">Custom Furniture</span>
-                    <span class="zh">定制木工家具</span>
-                  </label>
-                  <label class="checkbox-label">
-                    <input type="checkbox" name="services" value="Other">
-                    <span class="en">Other Services</span>
-                    <span class="zh">其他服务</span>
-                  </label>
+                  <div class="custom-calendar-widget" id="inline-calendar-widget"></div>
+                  <input type="hidden" id="inline-date" required>
+                  <div class="selected-date-display" id="inline-date-display">
+                    <span class="en">No date selected</span>
+                    <span class="zh">未选择日期</span>
+                  </div>
                 </div>
               </div>
               
-              <!-- Project Brief Description -->
-              <div class="form-group">
-                <label for="project-brief" class="form-label">
-                  <span class="en">Tell us about your project</span>
-                  <span class="zh">项目详情描述</span>
-                </label>
-                <textarea id="project-brief" name="project_brief" class="form-control" placeholder="E.g. I need complete interior renovation for my 2-story terraced house, including a security autogate installation."></textarea>
-              </div>
-              
               <!-- Submit Button -->
-              <button type="submit" class="btn btn-primary form-submit-btn" id="submit-button">
-                Submit Inquiry | 提交咨询
+              <button type="submit" class="btn btn-primary form-submit-btn" id="submit-button" style="width: 100%;">
+                Book Site Visit | 立即预约
               </button>
             </form>
             
@@ -815,25 +874,25 @@
     </div>
   </footer>
 
-  <!-- Floating Quote Action Button -->
-  <a href="#quote-form" 
-     class="floating-quote" 
-     id="floating-quote-btn"
-     title="Get a Free Quote | 获取免费报价">
+  <!-- Floating Site Visit Button -->
+  <button class="floating-quote" 
+     id="floating-site-visit-btn"
+     title="Book a Site Visit | 预约现场测量"
+     style="border: none; background: none; padding: 0; cursor: pointer;">
     <div class="floating-quote-tooltip">
-      <span class="en">Get Free Quote</span>
-      <span class="zh">获取免费报价</span>
+      <span class="en">Book Site Visit</span>
+      <span class="zh">预约现场测量</span>
     </div>
     <div class="floating-quote-icon">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
-        <polyline points="14 2 14 8 20 8"/>
-        <line x1="16" y1="13" x2="8" y2="13"/>
-        <line x1="16" y1="17" x2="8" y2="17"/>
-        <polyline points="10 9 9 9 8 9"/>
+        <rect width="18" height="18" x="3" y="4" rx="2" ry="2"/>
+        <line x1="16" x2="16" y1="2" y2="6"/>
+        <line x1="8" x2="8" y1="2" y2="6"/>
+        <line x1="3" x2="21" y1="10" y2="10"/>
+        <path d="m9 16 2 2 4-4"/>
       </svg>
     </div>
-  </a>
+  </button>
 
   <!-- Floating WhatsApp Action Button -->
   <a href="https://wa.me/60123456789?text=Hi%20E%20Build,%20I%20would%20like%20to%20inquire%20about%20your%20renovation%20services." 
@@ -853,7 +912,228 @@
     </div>
   </a>
 
+  <!-- Book a Site Visit Multi-Step Modal -->
+  <div class="modal-backdrop" id="site-visit-modal" role="dialog" aria-modal="true">
+    <div class="modal-container">
+      
+      <!-- Modal Header (Progress & Close) -->
+      <div class="modal-header">
+        <div class="modal-progress-container">
+          <div class="modal-progress-text">
+            <span class="en">Step <span id="current-step-num">1</span> of 4</span>
+            <span class="zh">第 <span id="current-step-num-zh">1</span> / 4 步</span>
+          </div>
+          <div class="modal-progress-track">
+            <div class="modal-progress-bar" id="modal-progress-bar"></div>
+          </div>
+        </div>
+        <button class="modal-close-btn" id="modal-close-btn" aria-label="Close modal">&times;</button>
+      </div>
+
+      <!-- Modal Steps Viewport -->
+      <div class="modal-steps-viewport">
+        <div class="modal-steps-container" id="modal-steps-container">
+          
+          <!-- Step 1: Select Property Type -->
+          <div class="modal-step" data-step="1">
+            <h3 class="modal-step-title bilingual-heading">
+              <span class="en">Select Property Type</span>
+              <span class="zh">选择物业类型</span>
+            </h3>
+            <div class="cards-grid">
+              <div class="card-option" data-value="Condo" data-group="property-type">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M8 10h.01"/><path d="M16 10h.01"/><path d="M8 14h.01"/><path d="M16 14h.01"/></svg>
+                </div>
+                <div class="card-title">
+                  <span class="en">Condo</span>
+                  <span class="zh">高层公寓</span>
+                </div>
+              </div>
+              
+              <div class="card-option" data-value="Landed" data-group="property-type">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                </div>
+                <div class="card-title">
+                  <span class="en">Landed</span>
+                  <span class="zh">有地住宅</span>
+                </div>
+              </div>
+              
+              <div class="card-option" data-value="Commercial" data-group="property-type">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 22V4a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v18Z"/><path d="M6 12H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2"/><path d="M18 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-2"/></svg>
+                </div>
+                <div class="card-title">
+                  <span class="en">Commercial</span>
+                  <span class="zh">商业空间</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 2: Select Scope of Work -->
+          <div class="modal-step" data-step="2">
+            <h3 class="modal-step-title bilingual-heading">
+              <span class="en">Select Scope of Work</span>
+              <span class="zh">选择工程范围</span>
+            </h3>
+            <div class="cards-grid">
+              <div class="card-option" data-value="Kitchen" data-group="scope-work">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2v0a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Z"/><path d="M18 22v-7"/></svg>
+                </div>
+                <div class="card-title">
+                  <span class="en">Kitchen</span>
+                  <span class="zh">厨房装修</span>
+                </div>
+              </div>
+              
+              <div class="card-option" data-value="Full House" data-group="scope-work">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3-1.912 1.912a2 2 0 0 1-2.828 0L3 11h18l-4.26-4.26a2 2 0 0 1 0-2.828L12 3Z"/><rect width="18" height="11" x="3" y="11" rx="2"/></svg>
+                </div>
+                <div class="card-title">
+                  <span class="en">Full House</span>
+                  <span class="zh">整屋翻新</span>
+                </div>
+              </div>
+              
+              <div class="card-option" data-value="Extension" data-group="scope-work">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+                </div>
+                <div class="card-title">
+                  <span class="en">Extension</span>
+                  <span class="zh">房屋扩建</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 3: Select Budget Tier -->
+          <div class="modal-step" data-step="3">
+            <h3 class="modal-step-title bilingual-heading">
+              <span class="en">Select Budget Tier</span>
+              <span class="zh">选择预算区间</span>
+            </h3>
+            <div class="cards-grid budget-grid">
+              <div class="card-option" data-value="RM50k-100k" data-group="budget">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+                </div>
+                <div class="card-title">
+                  <span class="en">RM50k - RM100k</span>
+                  <span class="zh">5万 - 10万令吉</span>
+                </div>
+              </div>
+              
+              <div class="card-option" data-value="RM100k+" data-group="budget">
+                <div class="card-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" x2="12" y1="2" y2="22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/><path d="M19 9h2a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V11a2 2 0 0 1 2-2h2"/></svg>
+                </div>
+                <div class="card-title">
+                  <span class="en">RM100k+</span>
+                  <span class="zh">10万令吉以上</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Step 4: Contact Details & Date -->
+          <div class="modal-step" data-step="4">
+            <h3 class="modal-step-title bilingual-heading">
+              <span class="en">Contact Details & Preferred Date</span>
+              <span class="zh">联系详情与首选日期</span>
+            </h3>
+            <div class="modal-step-layout">
+              <div class="modal-step-inputs">
+                <div class="form-group">
+                  <label for="modal-name" class="form-label">
+                    <span class="en">Full Name</span>
+                    <span class="zh">姓名</span>
+                    <span class="required-star">*</span>
+                  </label>
+                  <input type="text" id="modal-name" class="form-control" placeholder="E.g. Tan Kok Seng" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="modal-phone" class="form-label">
+                    <span class="en">Phone Number (WhatsApp)</span>
+                    <span class="zh">电话号码 (首选 WhatsApp)</span>
+                    <span class="required-star">*</span>
+                  </label>
+                  <input type="tel" id="modal-phone" class="form-control" placeholder="E.g. +60123456789" required>
+                </div>
+                
+                <div class="form-group">
+                  <label for="modal-email" class="form-label">
+                    <span class="en">Email Address</span>
+                    <span class="zh">电子邮箱</span>
+                    <span class="required-star">*</span>
+                  </label>
+                  <input type="email" id="modal-email" class="form-control" placeholder="E.g. tan@example.com" required>
+                </div>
+              </div>
+
+              <div class="modal-step-calendar">
+                <label class="form-label">
+                  <span class="en">Select Site Visit Date</span>
+                  <span class="zh">选择现场测量日期</span>
+                  <span class="required-star">*</span>
+                </label>
+                <div class="custom-calendar-widget" id="modal-calendar-widget"></div>
+                <input type="hidden" id="modal-date" required>
+                <div class="selected-date-display" id="modal-date-display">
+                  <span class="en">No date selected</span>
+                  <span class="zh">未选择日期</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- Modal Footer (Navigation) -->
+      <div class="modal-footer">
+        <button class="btn btn-outline" id="modal-back-btn" style="visibility: hidden;">
+          Back | 返回
+        </button>
+        <button class="btn btn-primary" id="modal-next-btn" disabled>
+          Next | 下一步
+        </button>
+      </div>
+
+      <!-- Modal Success Overlay -->
+      <div class="form-success-overlay" id="modal-success-screen">
+        <div class="success-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+        </div>
+        <div class="success-title">
+          <h4 class="en">Booking Confirmed!</h4>
+          <h4 class="zh">现场测量预约成功！</h4>
+        </div>
+        <div class="success-msg">
+          <p class="en">Your site visit request has been received. Our design consultants will contact you shortly to confirm details.</p>
+          <p class="zh">我们已成功接收您的现场测量申请。我们的顾问将尽快联系您以确认细节。</p>
+        </div>
+        <div class="success-whatsapp-cta">
+          <p class="en">Need instant confirmation? <span class="zh">需要立即确认？</span></p>
+          <a href="" class="btn btn-whatsapp" id="modal-success-whatsapp-btn" target="_blank" rel="noopener noreferrer">
+            <svg viewBox="0 0 24 24" fill="currentColor">
+              <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946C.06 5.348 5.397.01 12.008.01c3.202.001 6.212 1.246 8.477 3.514 2.266 2.268 3.507 5.28 3.505 8.484-.004 6.657-5.34 11.997-11.953 11.997-2.005-.001-3.973-.502-5.724-1.457L0 24zm6.59-4.846c1.6.95 3.188 1.449 4.825 1.451 5.436.002 9.858-4.419 9.86-9.86.001-2.636-1.02-5.115-2.873-6.97C16.59 1.919 14.12 1.9 11.986 1.9c-5.439 0-9.86 4.42-9.863 9.864-.001 1.765.483 3.488 1.4 5.013L2.5 21.5l4.818-1.261zm10.748-6.128c-.295-.148-1.748-.862-2.02-.962-.273-.099-.471-.148-.67.148-.198.295-.767.962-.94 1.16-.173.199-.347.223-.642.074-.295-.148-1.248-.46-2.378-1.467-.88-.785-1.474-1.754-1.647-2.05-.173-.295-.018-.455.13-.602.133-.133.295-.347.444-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.748-.713 1.996-1.402.248-.689.248-1.278.173-1.402-.075-.125-.273-.199-.57-.347z"/>
+            </svg>
+            Connect on WhatsApp | 微信咨询
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
   <!-- JavaScript logic -->
-  <script src="app.js"></script>
+  <script src="app.js?v=1.6"></script>
 </body>
 </html>
