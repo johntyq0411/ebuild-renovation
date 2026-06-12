@@ -716,4 +716,91 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize custom calendar widgets
   modalCalendar = initCalendar('modal-calendar-widget', 'modal-date', 'modal-date-display');
   inlineCalendar = initCalendar('inline-calendar-widget', 'inline-date', 'inline-date-display');
+
+  // --- 6. Interactive Comparison Slider Logic ---
+  function initComparisonSlider() {
+    const slider = document.getElementById('comparisonSlider');
+    const overImage = document.getElementById('imageOver');
+    const handle = document.getElementById('sliderHandle');
+    const tooltip = document.getElementById('sliderTooltip');
+
+    if (!slider || !overImage || !handle) return;
+
+    let isDragging = false;
+    let hasInteracted = false;
+
+    // Set position percentage (0 to 100)
+    function setSliderPosition(x) {
+      // Update overImage clip path
+      overImage.style.clipPath = `inset(0 ${100 - x}% 0 0)`;
+      // Update handle position
+      handle.style.left = `${x}%`;
+    }
+
+    // Process interaction coordinates
+    function handleMove(clientX) {
+      const rect = slider.getBoundingClientRect();
+      let offsetX = clientX - rect.left;
+      let percentage = (offsetX / rect.width) * 100;
+
+      // Clamp between 0% and 100%
+      percentage = Math.max(0, Math.min(percentage, 100));
+
+      setSliderPosition(percentage);
+
+      // Fade out tooltip on first interaction
+      if (!hasInteracted) {
+        hasInteracted = true;
+        if (tooltip) {
+          tooltip.classList.add('fade-out');
+        }
+      }
+    }
+
+    // Mouse events
+    slider.addEventListener('mousedown', (e) => {
+      // Only track left clicks
+      if (e.button !== 0) return;
+      isDragging = true;
+      handleMove(e.clientX);
+    });
+
+    window.addEventListener('mousemove', (e) => {
+      if (!isDragging) return;
+      handleMove(e.clientX);
+    });
+
+    window.addEventListener('mouseup', () => {
+      isDragging = false;
+    });
+
+    // Touch events for mobile responsiveness
+    slider.addEventListener('touchstart', (e) => {
+      isDragging = true;
+      if (e.touches && e.touches[0]) {
+        handleMove(e.touches[0].clientX);
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchmove', (e) => {
+      if (!isDragging) return;
+      if (e.touches && e.touches[0]) {
+        handleMove(e.touches[0].clientX);
+      }
+    }, { passive: true });
+
+    window.addEventListener('touchend', () => {
+      isDragging = false;
+    });
+
+    // Handle container resizing to maintain layout if browser window changes
+    const resizeObserver = new ResizeObserver(() => {
+      const currentLeft = parseFloat(handle.style.left) || 50;
+      setSliderPosition(currentLeft);
+    });
+    resizeObserver.observe(slider);
+  }
+
+  // Initialize Portfolio Comparison Slider
+  initComparisonSlider();
 });

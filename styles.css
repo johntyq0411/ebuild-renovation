@@ -2605,3 +2605,272 @@ footer {
   }
 }
 
+/* ==========================================================================
+   Interactive Portfolio Section (From 3D Plan to Reality Slider)
+   ========================================================================== */
+
+.portfolio-comparison {
+  background-color: #0b0b0b; /* Dark backdrop to match premium gold theme */
+  position: relative;
+  z-index: 1;
+}
+
+.portfolio-header {
+  margin-bottom: 4rem;
+}
+
+.portfolio-intro {
+  max-width: 700px;
+  margin: 1.5rem auto 0 auto;
+}
+
+.comparison-container {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+.comparison-slider {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  overflow: hidden;
+  border-radius: 12px;
+  border: 1px solid rgba(197, 168, 128, 0.25);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: pan-y; /* Prevent horizontal swipe scroll interference */
+  background-color: #1a1a1a;
+}
+
+.comparison-slider img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+.image-under {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.image-over {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  clip-path: inset(0 50% 0 0); /* Left half visible initially */
+  will-change: clip-path;
+}
+
+.image-label {
+  position: absolute;
+  bottom: 20px;
+  padding: 0.6rem 1.2rem;
+  background: rgba(11, 11, 11, 0.85);
+  border: 1px solid rgba(197, 168, 128, 0.3);
+  color: var(--text-primary, #ffffff);
+  font-family: var(--font-headings);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.label-left {
+  left: 20px;
+  z-index: 15;
+}
+
+.label-right {
+  right: 20px;
+  z-index: 5;
+}
+
+.comparison-handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%; /* Center initially */
+  width: 2px;
+  background: var(--accent-base, #c5a880);
+  z-index: 20;
+  cursor: ew-resize;
+  transform: translateX(-50%);
+  will-change: left;
+}
+
+.comparison-handle::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: 12px;
+  margin-left: -6px;
+  background: transparent;
+  height: 100%;
+}
+
+.handle-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background-color: var(--accent-base, #c5a880);
+  border: 2px solid #000000;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
+  color: #000000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.25s ease, box-shadow 0.25s ease;
+  cursor: ew-resize;
+}
+
+.comparison-handle:hover .handle-button,
+.comparison-slider:active .handle-button {
+  background-color: var(--accent-bright, #d4af37);
+  transform: translate(-50%, -50%) scale(1.1);
+  box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+}
+
+.handle-button svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+}
+
+/* Tooltip Instruction */
+.comparison-tooltip {
+  position: absolute;
+  top: 30px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  z-index: 25;
+  pointer-events: none;
+  animation: tooltip-bounce 2s infinite ease-in-out;
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.comparison-tooltip.fade-out {
+  opacity: 0;
+  transform: translate(-50%, -10px);
+}
+
+.tooltip-content {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(11, 11, 11, 0.95);
+  border: 1px solid var(--accent-base, #c5a880);
+  padding: 0.5rem 1rem;
+  border-radius: 30px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+  white-space: nowrap;
+}
+
+.tooltip-content span {
+  font-family: var(--font-headings);
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: #ffffff;
+}
+
+.tooltip-icon {
+  width: 14px;
+  height: 14px;
+  color: var(--accent-base, #c5a880);
+  animation: pulse-icon 1.5s infinite;
+}
+
+@keyframes tooltip-bounce {
+  0%, 100% {
+    transform: translate(-50%, 0);
+  }
+  50% {
+    transform: translate(-50%, -6px);
+  }
+}
+
+@keyframes pulse-icon {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.2);
+    opacity: 0.7;
+  }
+}
+
+/* Tablet & Mobile Media Queries for Comparison Slider */
+@media (max-width: 768px) {
+  .portfolio-header {
+    margin-bottom: 2.5rem;
+  }
+  
+  .comparison-container {
+    padding: 0 0.75rem;
+  }
+  
+  .comparison-slider {
+    aspect-ratio: 4 / 3; /* Taller on mobile for better usability and detail */
+  }
+
+  .image-label {
+    bottom: 12px;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.65rem;
+  }
+
+  .label-left {
+    left: 12px;
+  }
+
+  .label-right {
+    right: 12px;
+  }
+
+  .handle-button {
+    width: 38px;
+    height: 38px;
+  }
+
+  .handle-button svg {
+    width: 12px;
+    height: 12px;
+  }
+
+  .comparison-tooltip {
+    top: 20px;
+  }
+
+  .tooltip-content {
+    padding: 0.4rem 0.8rem;
+    gap: 0.35rem;
+  }
+
+  .tooltip-content span {
+    font-size: 0.6rem;
+  }
+}
+

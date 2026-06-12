@@ -21,7 +21,7 @@
   <link rel="icon" type="image/svg+xml" href="assets/logo.svg">
   
   <!-- Custom Stylesheets -->
-  <link rel="stylesheet" href="styles.css?v=1.7">
+  <link rel="stylesheet" href="styles.css?v=1.8">
 
   <!-- Inline style block to guarantee immediate rendering of the floating Quote button (bypasses browser caching) -->
   <style>
@@ -216,6 +216,12 @@
             </a>
           </li>
           <li>
+            <a href="#portfolio" class="nav-link">
+              <span class="en">Portfolio</span>
+              <span class="zh">精选案例</span>
+            </a>
+          </li>
+          <li>
             <a href="#contact" class="nav-link">
               <span class="en">Contact</span>
               <span class="zh">联系我们</span>
@@ -264,6 +270,12 @@
         <a href="#services" class="nav-link mobile-link">
           <span class="en">Services</span>
           <span class="zh">服务项目</span>
+        </a>
+      </li>
+      <li>
+        <a href="#portfolio" class="nav-link mobile-link">
+          <span class="en">Portfolio</span>
+          <span class="zh">精选案例</span>
         </a>
       </li>
       <li>
@@ -608,6 +620,61 @@
                 Precision Noise Control | 精准声学噪音控制
               </li>
             </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Interactive Portfolio Section -->
+    <section class="portfolio-comparison section-padding" id="portfolio">
+      <div class="container">
+        <div class="portfolio-header text-center">
+          <div class="bilingual-heading">
+            <span class="section-label">Our Works | 我们的案例</span>
+            <h2 class="en" style="margin-top: 1rem;">From 3D Plan to Reality</h2>
+            <h2 class="zh">从 3D 图纸到真实呈现</h2>
+          </div>
+          <div class="portfolio-intro bilingual-text text-center">
+            <p class="en">Drag the slider handle left and right to compare our initial 3D conceptual designs with the completed final renovations.</p>
+            <p class="zh">左右拖动滑动条，对比我们的 3D 效果图与最终完工的真实装修场景。</p>
+          </div>
+        </div>
+
+        <div class="comparison-container">
+          <div class="comparison-slider" id="comparisonSlider">
+            <!-- Under Image (Right Side - Final Build) -->
+            <div class="image-under">
+              <img src="assets/comparison_final_build.png" alt="Final Build | 真实完工" draggable="false">
+              <span class="image-label label-right">Final Build | 真实呈现</span>
+            </div>
+            
+            <!-- Over Image (Left Side - 3D Render) -->
+            <div class="image-over" id="imageOver">
+              <img src="assets/comparison_3d_render.png" alt="3D Render | 3D 效果图" draggable="false">
+              <span class="image-label label-left">3D Render | 3D 效果图</span>
+            </div>
+
+            <!-- Slider Handle -->
+            <div class="comparison-handle" id="sliderHandle">
+              <div class="handle-button">
+                <svg class="arrow-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="15 18 9 12 15 6"></polyline>
+                </svg>
+                <svg class="arrow-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="9 18 15 12 9 6"></polyline>
+                </svg>
+              </div>
+            </div>
+
+            <!-- Subtle Instruction Tooltip -->
+            <div class="comparison-tooltip" id="sliderTooltip">
+              <div class="tooltip-content">
+                <svg class="tooltip-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M12 5v14M5 12h14M19 12l-4-4M19 12l-4 4M5 12l4-4M5 12l4 4"/>
+                </svg>
+                <span>Drag to Compare | 拖动对比</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1247,6 +1314,6 @@
   </div>
 
   <!-- JavaScript logic -->
-  <script src="app.js?v=1.7"></script>
+  <script src="app.js?v=1.8"></script>
 </body>
 </html>
